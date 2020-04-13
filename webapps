@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -x
+
+GRP=TEST-2
+REGION=australiasoutheast
+APP_NAME=test-nginx
+APP_IMAGE=nginx:latest
+
+az group create -n $GRP -l $REGION
+
+az appservice plan create -g $GRP -n $APP_NAME --is-linux --number-of-workers 1 --sku B1
+
+az webapp create --resource-group $GRP --plan $APP_NAME --name ${APP_NAME}-app --deployment-container-image-name $APP_IMAGE
+
+az webapp config container set --resource-group $GRP --name ${APP_NAME}-app --docker-registry-server-url $APP_IMAGE
+
+#az group delete -n $GRP
