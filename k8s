@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -x
+
+GRP=TEST-1
+REGION=australiasoutheast
+CLUSTER_NAME=test-cluster
+
+az group create -n $GRP -l $REGION
+
+az aks create -g $GRP -n $CLUSTER_NAME --node-count=1 --generate-ssh-keys --enable-addons monitoring --node-vm-size Standard_A2_v2
+
+az aks get-credentials  -g $REGION  -n $CLUSTER_NAME
+
+#az group delete -n GRP
