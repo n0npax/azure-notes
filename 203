@@ -1,6 +1,18 @@
+# cosmodb
+az cosmosdb create --name $NAME -g $GRP --kind $KIND --location $LOCATION --default-consistency-level Strong --enable-multiple-write-location true --enable-automatic-failover
+az cosmosdb database create -g $GRP --name $NAME --db-name $DB_NAME
+az cosmosdb list-keys --name
+az cosmosdb list-kets --name
+az cosmosdb show --name $NAME -g $GRP --query $QUERY
 # batch
 az batch pool create
 az batch job create
 az batch task create
 # aks
-az aks create --node-count 3 --generate-ssh-keys -n $NAME
+az aks create --node-count 3 --generate-ssh-keys -n $NAME -g $GRP
+# web app service
+az appservice plan create -n $PLANNAME -g $GRP # --sku $MACHINE_TYPE --is-linux
+az webapp create -n $APPNAME -g $GRP --plan $PLANNAME # --deployment-container-image-name busybox
+az webapp deployment source config -n $APPNAME -g $GRP --repo-url $URL --branch $BRANCH
+az webapp deployment source config -n $APPNAME -g $GRP --settings WEBSITES_PORT=80
+
