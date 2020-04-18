@@ -1,0 +1,6 @@
+# batch
+az batch pool create
+az batch job create
+az batch task create
+# aks
+az aks create --node-count 3 --generate-ssh-keys -n $NAME
