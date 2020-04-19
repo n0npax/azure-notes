@@ -1,3 +1,15 @@
+# app logic
+ways to build:
+* visually with logic app desinger
+* as a json (any ide)
+* b2b integrations pack
+
+Error handling:
+default: exp by 7.5sec min-5, max-45sec
+expotential interval: random interval
+fixed interval: guess what
+none: Don't resend req
+
 # cosmodb
 az cosmosdb create --name $NAME -g $GRP --kind $KIND --location $LOCATION --default-consistency-level Strong --enable-multiple-write-location true --enable-automatic-failover
 az cosmosdb database create -g $GRP --name $NAME --db-name $DB_NAME
