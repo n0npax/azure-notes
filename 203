@@ -1,10 +1,44 @@
+# autoscale
+session state in Redis (classico)
+
+
+# servicebus
+az servicebus namespace create -n $NAME -g $GRP
+az servicebus namespace authorization-rule key-list --namespace
+az servicebus queue create --namespace
+New-AzureRmServiceBusQueue
+
+# eventgrid
+
+az eventdrid event subscription create 
+
+# api gw
+
+openID - validate-jwt policy
+
+* inbound - Auth, rate limiting, caching
+* outbound - Filter, Transform, caching
+* backend - Transform, slelect meth, retry
+
+# search
+az search service create -g $GRP --name $NAME --sku $PRICE_TIER
+az search admin-key show --service-name $NAME -g $GRP --query "primaryKey"
+az search admin-key list --service-name $NAME -g $GRP --query "[0].key"
+
+## 
+* searchServiceClient object - index mgmt (.indexex.Create)
+* searchIndexClient - index search
+* IndexBath.Upload
+* Docsuments.Search<T>($QUERY, $PARAMS)
+* searchable properties on item are required. Need to drop/rebuild if missing
+
 # app logic
 ways to build:
 * visually with logic app desinger
 * as a json (any ide)
 * b2b integrations pack
 
-Error handling:
+## Error handling:
 default: exp by 7.5sec min-5, max-45sec
 expotential interval: random interval
 fixed interval: guess what
