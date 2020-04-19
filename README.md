@@ -2,13 +2,18 @@
 ingestion sampling to keep budget in rigour
 
 ## webapp
+```bash
 az webapp log config -n $NAME -g$GRP --level information --aplication-logging true
+```
 in app logging.AddAzureWebAppDiagnosticsi()
 logger.LogInformation("foo")
 
 ## blob
+
+```bash
 az storage container policy create -c logs 
 az storage container generate-sas
+```
 
 ## Usage analytics
 funnels  - user progression
@@ -21,15 +26,19 @@ session state in Redis (classico)
 
 
 # servicebus
+
+```bash
 az servicebus namespace create -n $NAME -g $GRP
 az servicebus namespace authorization-rule key-list --namespace
 az servicebus queue create --namespace
 New-AzureRmServiceBusQueue
+```
 
 # eventgrid
 
+```bash
 az eventdrid event subscription create 
-
+```
 # api gw
 
 openID - validate-jwt policy
@@ -39,9 +48,12 @@ openID - validate-jwt policy
 * backend - Transform, slelect meth, retry
 
 # search
+
+```bash
 az search service create -g $GRP --name $NAME --sku $PRICE_TIER
 az search admin-key show --service-name $NAME -g $GRP --query "primaryKey"
 az search admin-key list --service-name $NAME -g $GRP --query "[0].key"
+```
 
 ## 
 * searchServiceClient object - index mgmt (.indexex.Create)
@@ -63,25 +75,69 @@ fixed interval: guess what
 none: Don't resend req
 
 # cosmodb
+
+```bash
 az cosmosdb create --name $NAME -g $GRP --kind $KIND --location $LOCATION --default-consistency-level Strong --enable-multiple-write-location true --enable-automatic-failover
 az cosmosdb database create -g $GRP --name $NAME --db-name $DB_NAME
 az cosmosdb list-keys --name
 az cosmosdb list-kets --name
 az cosmosdb show --name $NAME -g $GRP --query $QUERY
-
+```
 # batch
+
+```bash
 az batch pool create
 az batch job create
 az batch task create
+```
+
 # aks
+
+```bash
 az aks create --node-count 3 --generate-ssh-keys -n $NAME -g $GRP
-i
+```
+
 # web app service
+
+```bash
 az appservice plan create -n $PLANNAME -g $GRP # --sku $MACHINE_TYPE --is-linux
 az webapp create -n $APPNAME -g $GRP --plan $PLANNAME # --deployment-container-image-name busybox
 az webapp deployment source config -n $APPNAME -g $GRP --repo-url $URL --branch $BRANCH
 az webapp deployment source config -n $APPNAME -g $GRP --settings WEBSITES_PORT=80
+```
 
 # security
 sp - service principal
+msi - Managed service identity
+sas - Shared access signature
 
+```bash
+az ad sp create-for-rbac --name $SPNAME $SP
+```
+
+## Roles
+```bash
+az role definition list --output json
+az role assignment list --assigne $SP.appID
+az role assignment create --role $ROLE --assignee $SP.appId --role "Website Contributor"
+az role definition list --output json
+```
+
+## MSI
+```bash
+az webapp indentity assign -g $GRP 0n $WEBAPP_NAME
+
+az sql server ad-admin create --resource-group $RES_GRP --server-name $SERVER_NAME --display-name $ADMIN_USER --object-id $FROM_PREV_STEP
+
+```
+
+## SAS
+
+```bash
+# Token
+az storage blob generate-sas --start --expiry --permission --name foo.svg --container-name --account-name --account-key
+# url
+az storage blob url --account-name --account-key --name --container-name --sas $SAS -o tsv
+```
+
+## KeyVault
