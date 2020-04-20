@@ -95,6 +95,9 @@ az batch task create
 
 ```bash
 az aks create --node-count 3 --generate-ssh-keys -n $NAME -g $GRP
+az aks create -g $GRP -n $CLUSTER_NAME --node-count=1 --generate-ssh-keys --enable-addons monitoring --node-vm-size Standard_A2_v2
+az aks get-credentials  -g $REGION  -n $CLUSTER_NAME
+
 ```
 
 # web app service
@@ -141,3 +144,29 @@ az storage blob url --account-name --account-key --name --container-name --sas $
 ```
 
 ## KeyVault
+
+```bash
+az keyvault create -n $NAME -g $GRP --sky $PRIcING_TIER
+az keyvault secret set --name $NAME --vault-name $VAULT_NAME --value "my password mate"
+az ad sp create-for-ebac --name $SP_NAME | jq
+az keyvault set-policy --name $kvname --spn $SP_NAME --secret-permission get
+
+```
+
+## Storage accounts
+
+```bash
+az ad sp create-for-rbac -n $NAME
+az role assignment delete --assignee $SP_APPID  --role Contributor 
+```
+
+## DDM (Dynamic Data Masking)
+```bash
+New-AzureRmSqlDatabaseDataMaskingRule -ServerNAme $SRV_NAME -DatabaseName $DB_NAME -ResourceGroupName $RES_GRP -schemaName dbo  -MaskingFunction Text -TableNAme "Foos"  --ColumnName "Bars" --suffixSize 3 --ReplaceString "xxxxxxxxxxxxxx"
+```
+
+```sql
+use masking;
+GO
+```
+
