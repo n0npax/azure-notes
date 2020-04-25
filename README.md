@@ -1,3 +1,4 @@
+# Azure notes
 ---
 # logging
 ingestion sampling to keep budget in rigour
