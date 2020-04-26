@@ -170,3 +170,9 @@ use masking;
 GO
 ```
 
+## SQL
+
+```bash
+az sql db list
+az sql db show-connection-string --client sqlcmd --name Logistics
+```
