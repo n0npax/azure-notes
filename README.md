@@ -1,5 +1,8 @@
 # Azure notes
 ---
+# Databricks
+same as apache spark
+
 # logging
 ingestion sampling to keep budget in rigour
 
