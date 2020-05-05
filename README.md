@@ -1,5 +1,5 @@
 # Azure notes
----
+
 # Databricks
 same as apache spark
 
