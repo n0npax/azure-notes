@@ -21,10 +21,10 @@ az storage container generate-sas
 ```
 
 ## Usage analytics
-funnels  - user progression
-impact - load times
+funnels  - user progression, track progression
+impact - load times, how load time impact progression
 retention - how many/ofter users returning/doing sth
-user flow - navigation between pages
+user flow - navigation between pages and features, people doing repetitive actions
 
 # autoscale
 session state in Redis (classico)
