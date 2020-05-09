@@ -112,6 +112,14 @@ az cosmosdb list-keys --name
 az cosmosdb list-kets --name
 az cosmosdb show --name $NAME -g $GRP --query $QUERY
 ```
+
+## Consistency Levels
+* Strong
+* Sounded-staleness
+* Session
+* consistent prefix
+* Eventual
+
 # batch
 
 ```bash
