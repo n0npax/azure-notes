@@ -21,6 +21,10 @@ az storage container policy create -c logs
 az storage container generate-sas
 ```
 
+1. Positive -> `ETAG` property
+2. Negative -> Lease
+
+
 ## Usage analytics
 
 ### funnels  - user progression, track progression
@@ -114,12 +118,26 @@ az cosmosdb list-kets --name
 az cosmosdb show --name $NAME -g $GRP --query $QUERY
 ```
 
+# sql
+json and sql queries -> SQL type
+
 ## Consistency Levels
 * Strong
 * Sounded-staleness
 * Session
 * consistent prefix
 * Eventual
+
+## TDE
+TDE encrypts the entire database using an AES encryption algorithm which doesn’t require application developers to make any changes to existing applications. TDE performs real-time I/O encryption and decryption of the data and log files. Once the database is loaded into memory, the data is accessible to administrators (DBAs) of SQL Server (sysadmin, db_owner), and Azure SQL Database (cloud) administrators and can be used by all roles and applications that have access to the database. If a database contains sensitive data in specific columns that needs to be protected from administrator roles and remain encrypted in memory, using Always Encrypted should be evaluated in addition to TDE.
+
+## Always encrypted
+Always Encrypted is a feature designed to protect sensitive data, stored in Azure SQL Database or SQL Server databases from access by database administrators (e.g. the members of the SQL Server sysadmin or db_owner roles), administrators of machines hosting SQL Server instances,), and Azure SQL Database (cloud) administrators. Data stored in the database is protected even if the entire machine is compromised, for example by malware. Always Encrypted leverages client-side encryption: a database driver inside an application transparently encrypts data, before sending the data to the database. Similarly, the driver decrypts encrypted data retrieved in query results.
+
+With Always Encrypted, cryptographic operations on the client-side use keys that are never revealed to the Database Engine (SQL Database or SQL Server). There are two types of keys in Always Encrypted:
+
+Column encryption keys are used to encrypt data in the database. These keys are stored in the database in the encrypted form (never in plaintext).
+Column master keys are used to encrypt column encryption keys. These keys are stored in an external key store, such as Windows Certificate Store, Azure Key Vault or hardware security modules.  For keys stored in Azure Key Vault, only the client application has access to the keys, but not the database, unlike TDE.
 
 # batch
 
@@ -136,6 +154,7 @@ az aks create --node-count 3 --generate-ssh-keys -n $NAME -g $GRP
 az aks create -g $GRP -n $CLUSTER_NAME --node-count=1 --generate-ssh-keys --enable-addons monitoring --node-vm-size Standard_A2_v2
 az aks get-credentials  -g $REGION  -n $CLUSTER_NAME
 
+az aks enable-addons # i.e monitor
 ```
 
 # web app service
@@ -214,3 +233,4 @@ GO
 az sql db list
 az sql db show-connection-string --client sqlcmd --name Logistics
 ```
+
