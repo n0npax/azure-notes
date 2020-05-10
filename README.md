@@ -1,4 +1,5 @@
-# Azure notes
+# Azure notes for az-203
+Some commands, copied docs and memos about azure
 
 # Databricks
 same as apache spark
