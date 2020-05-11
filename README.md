@@ -114,7 +114,6 @@ none: Don't resend req
 az cosmosdb create --name $NAME -g $GRP --kind $KIND --location $LOCATION --default-consistency-level Strong --enable-multiple-write-location true --enable-automatic-failover
 az cosmosdb database create -g $GRP --name $NAME --db-name $DB_NAME
 az cosmosdb list-keys --name
-az cosmosdb list-kets --name
 az cosmosdb show --name $NAME -g $GRP --query $QUERY
 ```
 
@@ -123,7 +122,7 @@ json and sql queries -> SQL type
 
 ## Consistency Levels
 * Strong
-* Sounded-staleness
+* Bounded-staleness
 * Session
 * consistent prefix
 * Eventual
@@ -233,4 +232,16 @@ GO
 az sql db list
 az sql db show-connection-string --client sqlcmd --name Logistics
 ```
+
+
+# Sampling
+
+## Adaptive sampling
+Adaptative sampling automatically adjusts the volume of telemetry sent from the SDK in your ASP.NET/ASP.NET Core app, and from Azure Functions. This is the default sampling when you use the ASP.NET or ASP.NET Core SDK. Adaptive sampling is currently only available for ASP.NET server-side telemetry, and for Azure Functions.
+
+# Fixed rate
+Fixed-rate sampling reduces the volume of telemetry sent from both your ASP.NET or ASP.NET Core or Java server and from your users' browsers. You set the rate. The client and server will synchronize their sampling so that, in Search, you can navigate between related page views and requests.
+
+# Ingestion sampling
+Ingestion sampling happens at the Application Insights service endpoint. It discards some of the telemetry that arrives from your app, at a sampling rate that you set. It doesn't reduce telemetry traffic sent from your app, but helps you keep within your monthly quota. The main advantage of ingestion sampling is that you can set the sampling rate without redeploying your app. Ingestion sampling works uniformly for all servers and clients, but it does not apply when any other types of sampling are in operation.
 
