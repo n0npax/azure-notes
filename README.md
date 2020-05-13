@@ -65,6 +65,10 @@ session state in Redis (classico)
 az servicebus namespace create -n $NAME -g $GRP
 az servicebus namespace authorization-rule key-list --namespace
 az servicebus queue create --namespace
+```
+
+new queue
+```bash
 New-AzureRmServiceBusQueue
 ```
 
@@ -73,6 +77,15 @@ New-AzureRmServiceBusQueue
 ```bash
 az eventdrid event subscription create 
 ```
+
+subscription filters
+* Event
+* Subject Begins with
+* Subject Ends With
+* Advanced filters (operator key, Value)
+
+
+
 # api gw
 
 openID - validate-jwt policy
@@ -90,10 +103,11 @@ az search admin-key list --service-name $NAME -g $GRP --query "[0].key"
 ```
 
 ## 
-* searchServiceClient object - index mgmt (.indexex.Create)
-* searchIndexClient - index search
-* IndexBath.Upload
-* Docsuments.Search<T>($QUERY, $PARAMS)
+* **searchServiceClient** object - index mgmt (.indexex.Create)
+* **searchIndexClient** - index search
+* **IndexBath** Upload
+* **Indexes** Create
+* **Docsuments.Search<T>($QUERY, $PARAMS)**
 * searchable properties on item are required. Need to drop/rebuild if missing
 
 # app logic
