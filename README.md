@@ -19,6 +19,7 @@ logger.LogInformation("foo")
 ```bash
 az storage container policy create -c logs 
 az storage container generate-sas
+az storage container policy create -c logs --name foo --start --expiry --permission lwrd --account-name --account-key
 ```
 
 1. Positive -> `ETAG` property
